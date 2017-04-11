@@ -13,12 +13,11 @@
 
  *= require_tree .
  *= require_self
- 
-*= require animate
-*= require bootstrap.min
-*= require font-awesome.min
-*= require main
-*= require prettyPhoto
-*= require price-range
-*= require responsive
+ *= require animate
+ *= require bootstrap.min
+ *= require font-awesome
+ *= require main
+ *= require prettyPhoto
+ *= require price-range
+ *= require responsive
 */
