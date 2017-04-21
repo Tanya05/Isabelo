@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :books
   devise_for :users
   root 'index#home'
   # The priority is based upon order of creation: first created -> highest priority.

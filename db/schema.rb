@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421212840) do
+ActiveRecord::Schema.define(version: 20170421215843) do
+
+  create_table "books", force: :cascade do |t|
+    t.string   "title",             limit: 255
+    t.string   "author",            limit: 255
+    t.integer  "genre",             limit: 4
+    t.string   "isbn",              limit: 255
+    t.integer  "users_id",          limit: 4
+    t.integer  "uploaded_by_id",    limit: 4
+    t.integer  "shared_for_week",   limit: 4
+    t.integer  "WL1_id",            limit: 4
+    t.integer  "WL2_id",            limit: 4
+    t.integer  "WL3_id",            limit: 4
+    t.integer  "borrowed_by_id",    limit: 4
+    t.integer  "borrowed_for_week", limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
