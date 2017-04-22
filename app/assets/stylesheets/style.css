@@ -28,7 +28,7 @@ textarea { overflow: auto; }
 
 #header { padding-top: 30px; }
 
-#logo { width: 238px; height: 41px; float: left; display: inline; margin-left: -4px;  position: relative; }
+#logo { width: 143px; height: 43px; float: left; display: inline; margin-left: -4px;  position: relative; }
 #logo span { position: absolute; bottom: -17px; right: -1px; font-size: 11px; line-height: 20px; }
 #logo span a { color: #44acd5; }
 #logo h1 a { display: block; height: 41px; background: url(images/logo.png); text-indent: -4000px; font-size: 0; line-height: 0; }
