@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+  <title>Book Sharing For All</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+  <!--<link rel="stylesheet" href="//assets/stylesheets/style.css" type="text/css" media="all" />
+  <script type="text/javascript" src="//assets/javascripts/jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" src="//assets/javascripts/jquery.jcarousel.min.js"></script>
+  <!--[if IE 6]>
+    <script type="text/javascript" src="/assets/javascripts/png-fix.js"></script>
+  <![endif]-->
+  <!--<script type="text/javascript" src="//assets/javascripts/functions.js"></script>-->
+</head>
+<body>
+
+    <div id="header" class="shell">
+      <div id="logo"><h1><a href="#">Isabelo</a></h1><span><a href="#">Book Sharing For All</a></span></div>
+      <!-- Navigation -->
+      <div id="navigation">
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Promotions</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contacts</a></li>
+        </ul>
+      </div>
+      <!-- End Navigation -->
+      <div class="cl">&nbsp;</div>
+      <!-- Login-details -->
+      <div id="login-details">
+        <p>Welcome, <a href="#" id="user">Guest</a> .</p><p><a href="#" class="cart" ><img src="/assets/images/cart-icon.png" alt="" /></a>Shopping Cart (0) <a href="#" class="sum">$0.00</a></p>
+      </div>
+      <!-- End Login-details -->
+    </div>
+    <!-- End Header -->
+  <!-- Slider -->
+  <!-- End Slider -->
+  <!-- Main -->
+  <div id="main" class="shell">
+    <!-- Sidebar -->
+    
+   <div style="text-align: center;">
+   <h3 style="color: black"> Add Book </h2><br>
+   <%= form_for @book, :id => 'form_id', url: books_path, html: { multipart: true } do |f| %>
+      
+      <%= f.label :Title %>:
+      <br><%= f.text_field :title,  class: 'field'%>
+
+      <br>
+
+      <br><%= f.label :Author %>:
+      <br><%= f.text_field :author, class: 'field'%>
+
+      <br>
+
+      <br><%= f.label :ISBN %>:
+      <br><%= f.number_field :isbn, class: 'field' %>
+
+      <br>
+      <br><%= f.label :Genre %>:<br/>
+        <%= f.radio_button :genre, 1%> Fiction<br />
+        <%= f.radio_button :genre, 2 %> Non-Fiction<br />
+        <%= f.radio_button :genre, 3 %> Course Book<br />
+      </p>
+      
+      <br><label for="Sharefor"> Share for how many weeks (max)</label><br/>
+        <%= f.radio_button :shared_for_week, 1%> 1 <nbsp>
+        <%= f.radio_button :shared_for_week, 2 %> 2 
+        <%= f.radio_button :shared_for_week, 3 %> 3 <br />
+      </p>
+
+      <a><%= button_to 'Save', books_path, :onclick => "$('form_id').submit()" ,:class => ' form-buttons submit-btn'%></a>
+  <% end %>
+</div>
+  </div>
+</div>
+  <!-- End Main -->
+  <!-- Footer -->
+  <div id="footer" class="shell">
+    <div class="top">
+      <div class="cnt">
+        <div class="about" style="margin:auto">
+          <h4>About BestSellers</h4>
+          <p>Nulla porttitor pretium mattis. Mauris lorem massa, ultricies non mattis bibendum, semper ut erat. Morbi vulputate placerat ligula. Fusce <br />convallis, nisl a pellentesque viverra, ipsum leo sodales sapien, vitae egestas dolor nisl eu tortor. Etiam ut elit vitae nisl tempor tincidunt. Nunc sed elementum est. Phasellus sodales viverra mauris nec dictum. Fusce a leo libero. Cras accumsan enim nec massa semper eu hendrerit nisl faucibus. Sed lectus ligula, consequat eget bibendum eu, consequat nec nisl. In sed consequat elit. Praesent nec iaculis sapien. <br />Curabitur gravida pretium tincidunt.  </p>
+        </div>
+        <div class="cl">&nbsp;</div>
+        <div class="copy">
+          <p>&copy; <a href="#">BestSeller.com</a>. Design by <a href="http://css-free-templates.com/">CSS-FREE-TEMPLATES.COM</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Footer -->
+</body>
+</html>
