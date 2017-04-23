@@ -54,19 +54,31 @@
         <label> Availability: </label>
         <% if @book.borrowed_by_id == nil%>
           Book Available</p>
+          <%= form_tag(controller: "borrow", action: "borrowRequest", method: "post") do %>
+            <label for="BorrowFor"> Borrow For how many weeks</label><br/>
+            <%= label_tag(:borrowed_for_week, "1") %>
+            <%= radio_button_tag(:borrowed_for_week, 1, true) %>
+            <%= label_tag(:borrowed_for_week, "2") %>
+            <%= radio_button_tag(:borrowed_for_week, 2) %>
+            <%= label_tag(:borrowed_for_week, "3") %>
+            <%= radio_button_tag(:borrowed_for_week, 3) %><br>
+              <%= submit_tag "Send Borrow Request" ,:class => ' form-buttons submit-btn'%>
+          <% end %>
+
         <% elsif @book.WL1_id == nil%>
-          Book Not Available. Waiting list is empty so you will be next in the list.</p>
+          Book Not Available. Waiting list is empty so you will be next on the list.</p>
         <% elsif @book.WL1_id != nil%>
           <% if @book.WL2_id == nil %>
-            Book Not Available. Waiting list is empty so you will be second in the list.</p>
+            Book Not Available. You will be second in the list.</p>
           <% elsif @book.WL2_id != nil %>
             <% if @book.WL3_id == nil %>
-               Book Not Available. Waiting list is empty so you will be third in the list.</p>
+               Book Not Available. You will be third in the list.</p>
             <%else%>
-              Waiting list full. Book Not availiable.</p>
+              Waiting list full. Book Not availiable. Please try again in a few days.</p>
             <%end%>
           <%end %>
         <% end %>
+
 </div>
   </div>
 </div>

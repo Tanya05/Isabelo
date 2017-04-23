@@ -1,16 +1,66 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+  <title>CSS Free Templates with jQuery Slider</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <!--<link rel="stylesheet" href="/assets/stylesheets/style.css" type="text/css" media="all" />
+  <script type="text/javascript" src="/assets/javascripts/jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/jquery.jcarousel.min.js"></script>
+  <!--[if IE 6]>
+    <script type="text/javascript" src="assets/javascripts/png-fix.js"></script>
+  <![endif]-->
+  <!--<script type="text/javascript" src="/assets/javascripts/functions.js"></script>-->
+</head>
+<body>
+  <!-- Header -->
+  <div id="header" class="shell">
+    <div id="logo"><div style="text-align: right"><h1><a href="#">BestSeller</a></h1></div><span><a href="#">free css template</a></span></div>
+    <!-- Navigation -->
+    <!-- End Navigation -->
+    <div class="cl">&nbsp;</div>
+    <!-- Login-details -->
+    <!-- End Login-details -->
   </div>
+  <!-- End Header -->
+  <!-- Slider -->
+  <!-- End Slider -->
+  <!-- Main -->
+  <div id="main" class="shell">
+    <!-- Sidebar -->
+    <div style="text-align: center">
+    <h3 style="color: black"> Forgot your password?</h3>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+	  <%= devise_error_messages! %>
+
+	    <%= f.label :email %><br />
+	    <%= f.email_field :email, autofocus: true, class: 'field' %><br>
+
+	  <div class="actions">
+	    <%= f.submit "Send me reset password instructions",class: 'form-buttons submit-btn' %>
+	  </div>
+	<% end %>
 
 <%= render "devise/shared/links" %>
+  </div>
+</div>
+  <!-- End Main -->
+  <!-- Footer -->
+  <div id="footer" class="shell">
+    <div class="top">
+      <div class="cnt">
+        <div class="about" style="margin:auto">
+          <h4>About BestSellers</h4>
+          <p>Nulla porttitor pretium mattis. Mauris lorem massa, ultricies non mattis bibendum, semper ut erat. Morbi vulputate placerat ligula. Fusce <br />convallis, nisl a pellentesque viverra, ipsum leo sodales sapien, vitae egestas dolor nisl eu tortor. Etiam ut elit vitae nisl tempor tincidunt. Nunc sed elementum est. Phasellus sodales viverra mauris nec dictum. Fusce a leo libero. Cras accumsan enim nec massa semper eu hendrerit nisl faucibus. Sed lectus ligula, consequat eget bibendum eu, consequat nec nisl. In sed consequat elit. Praesent nec iaculis sapien. <br />Curabitur gravida pretium tincidunt.  </p>
+        </div>
+        <div class="cl">&nbsp;</div>
+        <div class="copy">
+          <p>&copy; <a href="#">BestSeller.com</a>. Design by <a href="http://css-free-templates.com/">CSS-FREE-TEMPLATES.COM</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Footer -->
+</body>
+</html>
