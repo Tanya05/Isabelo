@@ -43,37 +43,30 @@
     <!-- Sidebar -->
     
    <div style="text-align: center;">
-   <h3 style="color: black"> Add Book </h2><br>
-   <%= form_for @book, :id => 'form_id', url: books_path, html: { multipart: true } do |f| %>
-      
-      <%= f.label :Title %>:
-      <br><%= f.text_field :title,  class: 'field',  required: true %>
-
-      <br>
-
-      <br><%= f.label :Author %>:
-      <br><%= f.text_field :author, class: 'field',  required: true %>
-
-      <br>
-
-      <br><%= f.label :ISBN %>:
-      <br><%= f.number_field :isbn, class: 'field',  required: true %>
-
-      <br>
-      <br><%= f.label :Genre %>:<br/>
-        <%= f.radio_button :genre, 1%> Fiction<br />
-        <%= f.radio_button :genre, 2 %> Non-Fiction<br />
-        <%= f.radio_button :genre, 3 %> Course Book<br />
-      </p>
-      
-      <br><label for="Sharefor"> Share for how many weeks (max)</label><br/>
-        <%= f.radio_button :shared_for_week, 1%> 1 <nbsp>
-        <%= f.radio_button :shared_for_week, 2 %> 2 
-        <%= f.radio_button :shared_for_week, 3 %> 3 <br />
-      </p>
-
-      <a><%= button_to 'Save', books_path, :onclick => "$('form_id').submit()" ,:class => ' form-buttons submit-btn'%></a>
-  <% end %>
+   <h3 style="color: black"> Book Details: </h2><br>
+    <div class="products">  
+        <label> Title: </label>
+        <%= @book.title %></br>
+        <label> Author: </label>
+        <%= @book.author %></br>
+        <label> ISBN: </label>
+        <%= @book.isbn %></br>
+        <label> Availability: </label>
+        <% if @book.borrowed_by_id == nil%>
+          Book Available</p>
+        <% elsif @book.WL1_id == nil%>
+          Book Not Available. Waiting list is empty so you will be next in the list.</p>
+        <% elsif @book.WL1_id != nil%>
+          <% if @book.WL2_id == nil %>
+            Book Not Available. Waiting list is empty so you will be second in the list.</p>
+          <% elsif @book.WL2_id != nil %>
+            <% if @book.WL3_id == nil %>
+               Book Not Available. Waiting list is empty so you will be third in the list.</p>
+            <%else%>
+              Waiting list full. Book Not availiable.</p>
+            <%end%>
+          <%end %>
+        <% end %>
 </div>
   </div>
 </div>
