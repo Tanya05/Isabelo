@@ -12,6 +12,14 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   get 'book/search' => 'search#searchInit'
   get 'book/result' => 'search#index'
+  post 'book/:id/borrowRequest' => 'borrow#borrowRequest', :as => :borrow_request
+  patch 'book/:id/borrowRequest' => 'borrow#borrowRequest'
+  get 'pending' => 'borrow#myBorrowRequests'
+  put 'pending/accept/:id' => 'borrow#acceptBorrowRequest', :as => :accept_borrow_request
+  get 'pending/recievals' => 'borrow#myConfirmedRequests'
+  put 'pending/recievals/:id' => 'borrow#confirmRecieval', :as => :confirm_book_recieved
+  get 'shared' => 'borrow#booksShared'
+  put 'shared/returned/:id' => 'borrow#confirmReturn', :as => :confirm_book_returned
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

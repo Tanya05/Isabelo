@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170423093904) do
+ActiveRecord::Schema.define(version: 20170423130155) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title",             limit: 255
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 20170423093904) do
     t.datetime "updated_at",                    null: false
     t.integer  "borrow_request_by", limit: 4
     t.boolean  "borrow_status"
+    t.integer  "WL1RequestWeeks",   limit: 4
+    t.integer  "WL2RequestWeeks",   limit: 4
+    t.integer  "WL3RequestWeeks",   limit: 4
   end
 
   create_table "users", force: :cascade do |t|
