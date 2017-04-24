@@ -45,7 +45,7 @@
    <div style="text-align: center;">
    <h3 style="color: black"> Book Details: </h2><br>
     <div class="products">
-        <img src = "<%= GoogleBooks.search("isbn: #{@book.isbn}").first.image_link %>" > 
+        <img src="http://covers.openlibrary.org/b/isbn/<%=@book.isbn%>-M.jpg" />
         <br>
         <label><b> Title: </b></label>
         <label><%= @book.title %></label></br>
