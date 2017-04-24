@@ -47,20 +47,30 @@
     <div class="products">  
         <label>Notifications of Borrowed books </label></br>
         <% @notificationsBorrowed.each do |notif| %>
-        <% if notif.notifType == 1%>
-        Deadline for <%= Book.find(notif.book_id).title%> is approaching. Please return the book on ot before: <%=notif.deadline%>
-        <% elsif notif.notifType == 2%>
-        <p> Deadline for returning <%= Book.find(notif.book_id).title%> has passed. Please return the book as soon as possible to <%= User.find(notif.user_id_about).name%></p>
-        <%end%></br >
+          <% if notif.notifType == 1%>
+          Deadline for <%= Book.find(notif.book_id).title%> is approaching. Please return the book on or before: <%=notif.deadline%> to <%= User.find(notif.user_id_about).name%> (<%= User.find(notif.user_id_about).email%>)
+          <% elsif notif.notifType == 2%>
+          <p> Deadline for returning <%= Book.find(notif.book_id).title%> has passed. Please return the book as soon as possible to <%= User.find(notif.user_id_about).name%><%= User.find(notif.user_id_about).email%></p>
+          <%end%></br > 
+        
         <% end %>
         <label>Notifications of Lent books </label></br>
         <% @notificationsLent.each do |notif| %>
-         <% if notif.notifType == 1%>
-        Deadline for <%= Book.find(notif.book_id).title%> is approaching.
-        <% elsif notif.notifType == 2%>
-        <p> Deadline for returning <%= Book.find(notif.book_id).title%> has passed. Please contact <%= User.find(notif.user_id_for).name%> to get the book back.</p>
-        <%end%></br>
+           <% if notif.notifType == 1%>
+          Deadline for <%= Book.find(notif.book_id).title%> is approaching.
+          <% elsif notif.notifType == 2%>
+          <p> Deadline for returning <%= Book.find(notif.book_id).title%> has passed. Please contact <%= User.find(notif.user_id_for).name%> (<%= User.find(notif.user_id_about).email%>)to get the book back.</p>
+          <% elsif notif.notifType == 3%>
+          <p> You have some borrow requests please click <a href="/pending">here</a> to resolve them.</p>
+          <%end%></br>
         <% end %>
+        <label>Misc </label></br>
+         <% @notificationsBorrowed.each do |notif| %>
+           <% if notif.notifType == 3%>
+          <p> You have some borrow requests please click <a href="/pending">here</a> to resolve them.</p>
+          <%end%></br > 
+        <% end %>
+
 
 </div>
   </div>

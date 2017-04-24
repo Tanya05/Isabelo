@@ -1,5 +1,5 @@
 class BorrowController < ApplicationController
-	def borrowRequest #make WL logic
+	def borrowRequest 
 		@user = current_user
 		@book = Book.find(params[:id])
 		if 	@user.id != @book.borrow_request_by and @user.id != @book.WL1_id and @user.id != @book.WL2_id and @user.id != @book.WL3_id
@@ -43,7 +43,7 @@ class BorrowController < ApplicationController
 		@books = Book.where(:uploaded_by_id => @user.id, :borrow_status=>1)
 	end
 
-	def acceptBorrowRequest
+	def acceptBorrowRequest #generate notification for the same
 		@user = current_user
 		@book = Book.find(params[:id])
 		@book.borrow_status = 0 #accepted by lender
@@ -52,6 +52,29 @@ class BorrowController < ApplicationController
 		if @book.save
       		redirect_to pending_path, notice: "Accepted borrow Request"
     	end	
+	end
+
+	def rejectBorrowRequest #generate notification for the same
+		@user = current_user
+		@book = Book.find(params[:id])
+		@book.borrowed_by_id = nil
+		if @book.WL1_id==nil
+			@book.borrow_status = nil
+		else
+			@book.borrow_status=1
+		end
+		@book.borrow_request_by= @book.WL1_id
+		@book.borrowed_for_week = @book.WL1RequestWeeks
+		@book.WL1_id= @book.WL2_id
+		@book.WL1RequestWeeks = @book.WL2RequestWeeks
+		@book.WL2_id= @book.WL3_id
+		@book.WL2RequestWeeks = @book.WL3RequestWeeks
+		@book.WL3_id=nil
+		@book.WL3RequestWeeks = nil
+		if @book.save
+      		redirect_to pending_path, notice: "Book Recieved"
+    	end
+
 	end
 
 	def myConfirmedRequests

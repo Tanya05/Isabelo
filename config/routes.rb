@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   patch 'book/:id/borrowRequest' => 'borrow#borrowRequest'
   get 'pending' => 'borrow#myBorrowRequests'
   put 'pending/accept/:id' => 'borrow#acceptBorrowRequest', :as => :accept_borrow_request
+  put 'pending/reject/:id' => 'borrow#rejectBorrowRequest', :as => :reject_borrow_request
   get 'pending/recievals' => 'borrow#myConfirmedRequests'
   put 'pending/recievals/:id' => 'borrow#confirmRecieval', :as => :confirm_book_recieved
   get 'shared' => 'borrow#booksShared'

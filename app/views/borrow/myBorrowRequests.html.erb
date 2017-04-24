@@ -46,12 +46,13 @@
    <h3 style="color: black"> Pending Requests: </h2><br>
     <div class="products">  
         <% @books.each do |book| %>
-        <%= book.title %>
-        <%= @users.find(book.borrow_request_by).id%>
-        <%= link_to "Accept Request", accept_borrow_request_path(book), method: :put, data: { confirm: "You sure?" }%><br>
+        <%= book.title %> requested by:
+        <%= @users.find(book.borrow_request_by).name%> (@users.find(book.borrow_request_by).email)
+        <%= link_to "Accept Request ", accept_borrow_request_path(book), method: :put, data: { confirm: "You sure?" }%>/ 
+        <%= link_to "Reject Request", reject_borrow_request_path(book), method: :put, data: { confirm: "You sure?" }%><br>
         <% end %>
 
-</div>
+  </div>
   </div>
 </div>
   <!-- End Main -->
