@@ -1,43 +1,106 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+  <title>Book Sharing For All</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+  <!--<link rel="stylesheet" href="//assets/stylesheets/style.css" type="text/css" media="all" />
+  <script type="text/javascript" src="//assets/javascripts/jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" src="//assets/javascripts/jquery.jcarousel.min.js"></script>
+  <!--[if IE 6]>
+    <script type="text/javascript" src="/assets/javascripts/png-fix.js"></script>
+  <![endif]-->
+  <!--<script type="text/javascript" src="//assets/javascripts/functions.js"></script>-->
+</head>
+<body>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div id="header" class="shell">
+      <div id="logo"><h1><a href="/">Isabelo</a></h1><span><a href="/">Book Sharing For All</a></span></div>
+      <!-- Navigation -->
+      <div id="navigation">
+       <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/book/search">Search Book</a></li>
+          <li><a href="/books/new">Share Book</a></li>
+          <li><a href="/account">My Account</a></li>
+          <li><a href="/shared">Shared Books</a></li>
+          <li><a href="/notifications">Notifications</a></li>
+        </ul>
+    </div>
+      <!-- End Navigation -->
+      <div class="cl">&nbsp;</div>
+      <!-- Login-details -->
+      <div id="login-details">
+      <p>Welcome, <a href="#" id="user"><%= @user.name %></a></p><p><%= link_to(' - Log Out', destroy_user_session_path, :method => :delete) %></p>
+    </div>
+      <!-- End Login-details -->
+    </div>
+    <!-- End Header -->
+  <!-- Slider -->
+  <!-- End Slider -->
+  <!-- Main -->
+  <div id="main" class="shell" style="min-height: 200px">
+    <!-- Sidebar -->
+    
+   <div style="text-align: center;">
+   <h3 style="color: black"> Change Password </h2><br>
+    <div class="products">  
+       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    Currently waiting confirmation for: <%= resource.unconfirmed_email %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off", class: 'field' %></br>
+  
+
+    <br><label>New Password</label> <i>(leave blank if you don't want to change it) <% if @minimum_password_length %>
       <br />
       <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+    <% end %></i><br />
+    <%= f.password_field :password, autocomplete: "off", class: 'field' %>
+   <br>
+  
 
-  <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'field' %><br>
+  
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
+    
     <%= f.submit "Update" ,class: 'form-buttons submit-btn'%>
-  </div>
+  
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+
+</div>
+  </div>
+</div>
+  <!-- End Main -->
+  <!-- Footer -->
+  <div id="footer" class="shell">
+    <div class="top">
+      <div class="cnt">
+          <div class="about" style="margin:auto">
+          <h4>About Isabelo</h4>
+          <p>Isabelo is a platform that was born out of a need for sharing books and a problem that we, the creators of the platform and also being students, faced. This was the problem of buying books to satiate our hunger for knowledge. We find that sharing books is a much better alternative than buying books when it comes to the average student. So get ready to collaborate and share to your hearts content! </p>
+          <p>Team Isabelo</p>
+        </div>
+        <div class="cl">&nbsp;</div>
+        <div class="copy">
+          <p>&copy; <a href="#">Isabelo.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Footer -->
+</body>
+</html>
+
+
+
+

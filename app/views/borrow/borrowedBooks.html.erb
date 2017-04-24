@@ -22,7 +22,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/book/search">Search Book</a></li>
           <li><a href="/books/new">Share Book</a></li>
-          <li><a href="#">My Account</a></li>
+          <li><a href="/account">My Account</a></li>
           <li><a href="/shared">Shared Books</a></li>
           <li><a href="/notifications">Notifications</a></li>
         </ul>
@@ -39,12 +39,29 @@
   <!-- Slider -->
   <!-- End Slider -->
   <!-- Main -->
-  <div id="main" class="shell">
+  <div id="main" class="shell" style="min-height: 200px">
+   <!--Sidebar -->
+  <div id="sidebar">
+      <ul class="categories">
+        <li>
+          <h4>My Account</h4>
+          <ul>
+            <li><a href="/borrowed">Borrowed Books</a></li>
+            <li><a href="/pending">Pending Requests</a></li>
+            <li><a href="/shared">Lent Books</a></li>
+            <li><a href="/pending/recievals">Borrow Request Status</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
     <!-- Sidebar -->
     
    <div style="text-align: center;">
    <h3 style="color: black"> Books Borrowed By You: </h2><br>
     <div class="products">  
+        <% if @books.blank? and @notyetacceptedbooks.blank?%>
+        <label> Oops Nothing to Show. Go borrow some books man. :P</label>
+        <%end%>
         <% @books.each do |book| %>
         <%= book.title %>
         Borrowed from: <%= User.find(book.uploaded_by_id).name%> (<%= User.find(book.uploaded_by_id).email%>)

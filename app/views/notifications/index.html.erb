@@ -22,7 +22,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/book/search">Search Book</a></li>
           <li><a href="/books/new">Share Book</a></li>
-          <li><a href="#">My Account</a></li>
+          <li><a href="/account">My Account</a></li>
           <li><a href="/shared">Shared Books</a></li>
           <li><a href="/notifications">Notifications</a></li>
         </ul>
@@ -39,29 +39,36 @@
   <!-- Slider -->
   <!-- End Slider -->
   <!-- Main -->
-  <div id="main" class="shell">
+  <div id="main" class="shell" style="min-height: 200px">
     <!-- Sidebar -->
     
    <div style="text-align: center;">
    <h3 style="color: black"> Notifications: <%= link_to "Clear Notifications ", clear_notifications_path(), method: :put, data: { confirm: "You sure?" }%></h2><br>
     <div class="products">  
-        <label>Notifications of Borrowed books </label></br><br>
-        <% @notificationsBorrowed.each do |notif| %>
-          <% if notif.notifType == 1%>
-          Deadline for <%= Book.find(notif.book_id).title%> is approaching. Please return the book on or before: <%=notif.deadline%> to <%= User.find(notif.user_id_about).name%> (<%= User.find(notif.user_id_about).email%>)
-          <% elsif notif.notifType == 2%>
-          <p> Deadline for returning <%= Book.find(notif.book_id).title%> has passed. Please return the book as soon as possible to <%= User.find(notif.user_id_about).name%><%= User.find(notif.user_id_about).email%></p>
+        <% if @notificationsBorrowed.blank? and @notificationsLent.blank?%>
+        <label> Oops No Notification</label>
+        <%end%>
+        <% if !@notificationsBorrowed.blank?%>  
+          <label>Notifications of Borrowed books </label></br><br>
+          <% @notificationsBorrowed.each do |notif| %>
+            <% if notif.notifType == 1%>
+            Deadline for <%= Book.find(notif.book_id).title%> is approaching. Please return the book on or before: <%=notif.deadline%> to <%= User.find(notif.user_id_about).name%> (<%= User.find(notif.user_id_about).email%>)
+            <% elsif notif.notifType == 2%>
+            <p> Deadline for returning <%= Book.find(notif.book_id).title%> has passed. Please return the book as soon as possible to <%= User.find(notif.user_id_about).name%><%= User.find(notif.user_id_about).email%></p>
+            <%end%>
           <%end%>
-        <% end %><br><br>
-        <label>Notifications of Lent books </label></br>
-        <% @notificationsLent.each do |notif| %>
-           <% if notif.notifType == 1%>
-          Deadline for <%= Book.find(notif.book_id).title%> is approaching.
-          <% elsif notif.notifType == 2%>
-          <p> Deadline for returning <%= Book.find(notif.book_id).title%> has passed. Please contact <%= User.find(notif.user_id_for).name%> (<%= User.find(notif.user_id_about).email%>)to get the book back.</p>
-          <%end%></br>
-        <% end %>
-        <br><label>Misc </label></br>
+          <% end %><br><br>
+        <% if !@notificationsLent.blank?%>  
+          <label>Notifications of Lent books </label></br>
+          <% @notificationsLent.each do |notif| %>
+             <% if notif.notifType == 1%>
+            Deadline for <%= Book.find(notif.book_id).title%> is approaching.
+            <% elsif notif.notifType == 2%>
+            <p> Deadline for returning <%= Book.find(notif.book_id).title%> has passed. Please contact <%= User.find(notif.user_id_for).name%> (<%= User.find(notif.user_id_about).email%>)to get the book back.</p>
+            <%end%></br>
+          <% end %>
+        <%end%>  
+        <br><label>Misc. Notifications </label></br>
         <% if @flag == 1 %>
             <p> You have some borrow requests please click <a href="/pending">here</a> to resolve them.
           <%end%>

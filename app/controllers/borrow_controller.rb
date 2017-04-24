@@ -90,6 +90,8 @@ class BorrowController < ApplicationController
 	def myConfirmedRequests
 		@user = current_user
 		@books = Book.where(:borrow_request_by => @user.id, :borrow_status=>0)
+		@notyetacceptedbooks = Book.where(:borrow_request_by => @user.id, :borrow_status=>1)
+		
 		# @book.borrowed_by_id = @book.borrow_request_by
 		# @book.borrow_request_by=nil
 		# if @book.save

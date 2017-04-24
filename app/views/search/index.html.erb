@@ -22,7 +22,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/book/search">Search Book</a></li>
           <li><a href="/books/new">Share Book</a></li>
-          <li><a href="#">My Account</a></li>
+          <li><a href="/account">My Account</a></li>
           <li><a href="/shared">Shared Books</a></li>
           <li><a href="/notifications">Notifications</a></li>
         </ul>
@@ -39,15 +39,18 @@
     <!-- Slider -->
     <!-- End Slider -->
     <!-- Main -->
-    <div id="main" class="shell">
+    <div id="main" class="shell" style="min-height: 200px">
     <!-- Sidebar -->
     
    <div style="text-align: center;">
    <h3 style="color: black"> Search Results </h2><br>
     <div class="products">
-        <% @books.each do |book| %>
-        <%= book.title %><a href="/books/<%= book.id %>"> View / Borrow Book </a></br>
-        <% end %>
+        <%if @books.blank?%>
+        <label>Oops Search Returned Nothing</label>
+        <%end%>
+          <% @books.each do |book| %>
+          <label><%= book.title %> by: <%= book.author %> :<a href="/books/<%= book.id %>"> View / Borrow Book </a></br></label>
+          <% end %>
 </div>
   </div>
 </div>
