@@ -110,10 +110,16 @@
 						<div class="product">
 							<a href="#" class="info">
 								<span class="holder">
-									<img src="/assets/images/image01.jpg" alt="" />
+									<img src = "<%= GoogleBooks.search("isbn: #{book.isbn}").first.image_link %>" > 
 									<span class="book-name"><%= book.title %></span>
 									<span class="author"><%= book.author %></span>
-									<span class="description">Genre: <%= book.genre %></span>
+									<span class="description">Genre: <%if book.genre == 1 %>
+													          Fiction</br>
+													          <%elsif book.genre == 2 %>
+													          Non Fiction </br>
+													          <%elsif book.genre == 3 %>
+													          Reference Book</br>
+													        <%end%></span>
 								</span>
 							</a>
 							<a href="#" class="buy-btn">Borrow Now</a>

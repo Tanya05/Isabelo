@@ -44,7 +44,9 @@
     
    <div style="text-align: center;">
    <h3 style="color: black"> Book Details: </h2><br>
-    <div class="products">  
+    <div class="products">
+        <img src = "<%= GoogleBooks.search("isbn: #{@book.isbn}").first.image_link %>" > 
+        <br>
         <label><b> Title: </b></label>
         <label><%= @book.title %></label></br>
         <label><b> Author: </b></label>
@@ -57,7 +59,7 @@
           <%elsif @book.genre == 2 %>
           <label> Non Fiction </label></br>
           <%elsif @book.genre == 3 %>
-          <label> Study Material </label></br>
+          <label> Reference Material </label></br>
         <%end%>
         <label><%= @book.isbn %></label></br>
         <label><b> Availability: </b></label>
