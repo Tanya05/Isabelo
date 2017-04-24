@@ -32,10 +32,14 @@ class BorrowController < ApplicationController
 		end
 	end
 
+	def borrowedBooks
+		@user = current_user
+		@books = Book.where(:borrowed_by_id => @user.id)
+	end
+
 	def myBorrowRequests
 		@user = current_user
 		@users = User.all
-		p @users 
 		@books = Book.where(:uploaded_by_id => @user.id, :borrow_status=>1)
 	end
 

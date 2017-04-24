@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   get 'book/search' => 'search#searchInit'
   get 'book/result' => 'search#index'
+  get 'borrowed' => 'borrow#borrowedBooks'
   post 'book/:id/borrowRequest' => 'borrow#borrowRequest', :as => :borrow_request
   patch 'book/:id/borrowRequest' => 'borrow#borrowRequest'
   get 'pending' => 'borrow#myBorrowRequests'

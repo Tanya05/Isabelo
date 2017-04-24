@@ -47,25 +47,19 @@
     <div class="products">  
         <label>Notifications of Borrowed books </label></br>
         <% @notificationsBorrowed.each do |notif| %>
-        <%= notif.notifType %>
         <% if notif.notifType == 1%>
         Deadline for <%= Book.find(notif.book_id).title%> is approaching. Please return the book on ot before: <%=notif.deadline%>
         <% elsif notif.notifType == 2%>
-        <p> Deadline for <%= Book.find(notif.book_id).title%> has passed. Please return the book as soon as possible to <%= User.find(notif.user_id_about).name%></p>
-        <%end%>
-        <%= notif.user_id_for%>
-        <%= notif.user_id_about%></br>
+        <p> Deadline for returning <%= Book.find(notif.book_id).title%> has passed. Please return the book as soon as possible to <%= User.find(notif.user_id_about).name%></p>
+        <%end%></br >
         <% end %>
         <label>Notifications of Lent books </label></br>
         <% @notificationsLent.each do |notif| %>
-        <%= notif.id%>
          <% if notif.notifType == 1%>
         Deadline for <%= Book.find(notif.book_id).title%> is approaching.
         <% elsif notif.notifType == 2%>
-        <p> Deadline for <%= Book.find(notif.book_id).title%> has passed. Please contact <%= User.find(notif.user_id_for).name%> to get the book back.</p>
-        <%end%>
-        <%= notif.user_id_for%>
-        <%= notif.user_id_about%></br>
+        <p> Deadline for returning <%= Book.find(notif.book_id).title%> has passed. Please contact <%= User.find(notif.user_id_for).name%> to get the book back.</p>
+        <%end%></br>
         <% end %>
 
 </div>

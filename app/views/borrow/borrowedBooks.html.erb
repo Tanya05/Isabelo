@@ -43,12 +43,14 @@
     <!-- Sidebar -->
     
    <div style="text-align: center;">
-   <h3 style="color: black"> Confirm That you have Recieved the following Books: </h2><br>
+   <h3 style="color: black"> Books Borrowed By You: </h2><br>
     <div class="products">  
         <% @books.each do |book| %>
-        Please recieve the book: '<%= book.title %>'' from <%=User.find(book.uploaded_by_id).name%> (<%=User.find(book.uploaded_by_id).email%>) and then click on:
-        <%= link_to "Confirm Recieval", confirm_book_recieved_path(book), method: :put, data: { confirm: "You sure?" }%><br>
-        <% end %>
+        <%= book.title %>
+        Borrowed from: <%= User.find(book.uploaded_by_id).name%> (<%= User.find(book.uploaded_by_id).email%>)
+        <br>
+        <% end %><br><br>
+         If you have returned the book, kindly ask the lender to mark the book as returned by loging in to his/her portal.
 
 </div>
   </div>

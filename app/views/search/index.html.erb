@@ -36,17 +36,17 @@
       <!-- End Login-details -->
     </div>
     <!-- End Header -->
-  <!-- Slider -->
-  <!-- End Slider -->
-  <!-- Main -->
-  <div id="main" class="shell">
+    <!-- Slider -->
+    <!-- End Slider -->
+    <!-- Main -->
+    <div id="main" class="shell">
     <!-- Sidebar -->
     
    <div style="text-align: center;">
    <h3 style="color: black"> Search Results </h2><br>
     <div class="products">
         <% @books.each do |book| %>
-        <%= book.title %></br>
+        <%= book.title %><a href="/books/<%= book.id %>"> View / Borrow Book </a></br>
         <% end %>
 </div>
   </div>
