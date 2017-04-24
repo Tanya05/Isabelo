@@ -43,37 +43,31 @@
     <!-- Sidebar -->
     
    <div style="text-align: center;">
-   <h3 style="color: black"> Add Book </h2><br>
-   <%= form_for @book, :id => 'form_id', url: books_path, html: { multipart: true } do |f| %>
-      
-      <%= f.label :Title %>:
-      <br><%= f.text_field :title,  class: 'field',  required: true %>
+   <h3 style="color: black"> Notifications: </h2><br>
+    <div class="products">  
+        <label>Notifications of Borrowed books </label></br>
+        <% @notificationsBorrowed.each do |notif| %>
+        <%= notif.notifType %>
+        <% if notif.notifType == 1%>
+        Deadline for <%= Book.find(notif.book_id).title%> is approaching. Please return the book on ot before: <%=notif.deadline%>
+        <% elsif notif.notifType == 2%>
+        <p> Deadline for <%= Book.find(notif.book_id).title%> has passed. Please return the book as soon as possible to <%= User.find(notif.user_id_about).name%></p>
+        <%end%>
+        <%= notif.user_id_for%>
+        <%= notif.user_id_about%></br>
+        <% end %>
+        <label>Notifications of Lent books </label></br>
+        <% @notificationsLent.each do |notif| %>
+        <%= notif.id%>
+         <% if notif.notifType == 1%>
+        Deadline for <%= Book.find(notif.book_id).title%> is approaching.
+        <% elsif notif.notifType == 2%>
+        <p> Deadline for <%= Book.find(notif.book_id).title%> has passed. Please contact <%= User.find(notif.user_id_for).name%> to get the book back.</p>
+        <%end%>
+        <%= notif.user_id_for%>
+        <%= notif.user_id_about%></br>
+        <% end %>
 
-      <br>
-
-      <br><%= f.label :Author %>:
-      <br><%= f.text_field :author, class: 'field',  required: true %>
-
-      <br>
-
-      <br><%= f.label :ISBN %>:
-      <br><%= f.number_field :isbn, class: 'field',  required: true %>
-
-      <br>
-      <br><%= f.label :Genre %>:<br/>
-        <%= f.radio_button :genre, 1, :checked=>true%> Fiction<br />
-        <%= f.radio_button :genre, 2 %> Non-Fiction<br />
-        <%= f.radio_button :genre, 3 %> Course Book<br />
-      </p>
-      
-      <br><label for="Sharefor"> Share for how many weeks (max)</label><br/>
-        <%= f.radio_button :shared_for_week, 1 , :checked=>true%> 1 <nbsp>
-        <%= f.radio_button :shared_for_week, 2 %> 2 
-        <%= f.radio_button :shared_for_week, 3 %> 3 <br />
-      </p>
-
-      <a><%= button_to 'Save', books_path, :onclick => "$('form_id').submit()" ,:class => ' form-buttons submit-btn'%></a>
-  <% end %>
 </div>
   </div>
 </div>

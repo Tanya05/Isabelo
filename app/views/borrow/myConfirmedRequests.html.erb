@@ -31,8 +31,8 @@
       <div class="cl">&nbsp;</div>
       <!-- Login-details -->
       <div id="login-details">
-        <p>Welcome, <a href="#" id="user">Guest</a> .</p><p><a href="#" class="cart" ><img src="/assets/images/cart-icon.png" alt="" /></a>Shopping Cart (0) <a href="#" class="sum">$0.00</a></p>
-      </div>
+      <p>Welcome, <a href="#" id="user"><%= @user.name %></a></p><p><%= link_to(' - Log Out', destroy_user_session_path, :method => :delete) %></p>
+    </div>
       <!-- End Login-details -->
     </div>
     <!-- End Header -->

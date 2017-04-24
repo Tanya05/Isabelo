@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :books
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations'}
   root 'index#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   put 'pending/recievals/:id' => 'borrow#confirmRecieval', :as => :confirm_book_recieved
   get 'shared' => 'borrow#booksShared'
   put 'shared/returned/:id' => 'borrow#confirmReturn', :as => :confirm_book_returned
+  get 'notifications' => 'notifications#index'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

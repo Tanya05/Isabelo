@@ -18,20 +18,20 @@
 		<div id="logo"><h1><a href="#">BestSeller</a></h1><span><a href="#">free css template</a></span></div>
 		<!-- Navigation -->
 		<div id="navigation">
-			<ul>
-				<li><a href="#" class="active">Home</a></li>
-				<li><a href="#">Products</a></li>
-				<li><a href="#">Promotions</a></li>
-				<li><a href="#">Profile</a></li>
-				<li><a href="#">About Us</a></li>
-				<li><a href="#">Contacts</a></li>
-			</ul>
+			 <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="book/search">Search Book</a></li>
+          <li><a href="books/new">Share Book</a></li>
+          <li><a href="#">My Account</a></li>
+          <li><a href="shared">Shared Books</a></li>
+          <li><a href="notifications">Notifications</a></li>
+        </ul>
 		</div>
 		<!-- End Navigation -->
 		<div class="cl">&nbsp;</div>
 		<!-- Login-details -->
 		<div id="login-details">
-			<p>Welcome, <a href="#" id="user">Guest</a> .</p><p><a href="#" class="cart" ><img src="/assets/images/cart-icon.png" alt="" /></a>Shopping Cart (0) <a href="#" class="sum">$0.00</a></p>
+			<p>Welcome, <a href="#" id="user"><%= @user.name %></a></p><p><%= link_to(' - Log Out', destroy_user_session_path, :method => :delete) %></p>
 		</div>
 		<!-- End Login-details -->
 	</div>

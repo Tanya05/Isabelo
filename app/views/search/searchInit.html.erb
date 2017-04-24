@@ -20,19 +20,19 @@
       <div id="navigation">
         <ul>
           <li><a href="#" class="active">Home</a></li>
-          <li><a href="#">Products</a></li>
-          <li><a href="#">Promotions</a></li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contacts</a></li>
+          <li><a href="#">Search Book</a></li>
+          <li><a href="#">Share Book</a></li>
+          <li><a href="#">Pending Requests</a></li>
+          <li><a href="#">Shared Books</a></li>
+          <li><a href="#">Confirmed Requests</a></li>
         </ul>
       </div>
       <!-- End Navigation -->
       <div class="cl">&nbsp;</div>
       <!-- Login-details -->
       <div id="login-details">
-        <p>Welcome, <a href="#" id="user">Guest</a> .</p><p><a href="#" class="cart" ><img src="/assets/images/cart-icon.png" alt="" /></a>Shopping Cart (0) <a href="#" class="sum">$0.00</a></p>
-      </div>
+      <p>Welcome, <a href="#" id="user"><%= @user.name %></a></p><p><%= link_to(' - Log Out', destroy_user_session_path, :method => :delete) %></p>
+    </div>
       <!-- End Login-details -->
     </div>
     <!-- End Header -->
@@ -45,8 +45,8 @@
    <div style="text-align: center;">
    <h3 style="color: black"> Search Books </h2><br>
     <%= form_tag(book_result_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Book" %>
-    <%= submit_tag "Search", :name => nil %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by author or title" , class: 'field'%>
+    <br><%= submit_tag "Search", :name => nil ,class: 'form-buttons submit-btn'%>
     <% end %>
 </div>
   </div>

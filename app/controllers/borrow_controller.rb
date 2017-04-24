@@ -2,13 +2,34 @@ class BorrowController < ApplicationController
 	def borrowRequest #make WL logic
 		@user = current_user
 		@book = Book.find(params[:id])
-		@book.borrow_request_by = @user.id
-		@book.borrow_status = 1 #Means that borrower has sent in the request but not accepted
-		p params[:borrowed_for_week]
-		@book.borrowed_for_week = params[:borrowed_for_week]
-		if @book.save
-      		redirect_to root_path, notice: "Added book"
-    	end
+		if 	@user.id != @book.borrow_request_by and @user.id != @book.WL1_id and @user.id != @book.WL2_id and @user.id != @book.WL3_id
+			if 	@book.borrow_request_by == nil and @book.WL1_id == nil
+				@book.borrow_request_by = @user.id
+				@book.borrow_status = 1 #Means that borrower has sent in the request but not accepted
+				p params[:borrowed_for_week]
+				@book.borrowed_for_week = params[:borrowed_for_week]
+		    
+		    elsif @book.borrow_request_by != nil and @book.WL1_id == nil 
+		    	@book.WL1_id = @user.id
+		    	@book.WL1RequestWeeks = params[:borrowed_for_week]
+
+		    elsif @book.borrow_request_by != nil and @book.WL1_id != nil and @book.WL2_id==nil
+		    	@book.WL2_id = @user.id
+		    	@book.WL2RequestWeeks = params[:borrowed_for_week]
+
+		    elsif @book.borrow_request_by != nil and @book.WL1_id != nil and @book.WL2_id!=nil and @book.WL2_id==nil
+		    	@book.WL3_id = @user.id
+		    	@book.WL3RequestWeeks = params[:borrowed_for_week]
+
+		    end
+		    
+		    if @book.save
+		    	redirect_to root_path, notice: "Added book"
+		    end
+
+		else
+			redirect_to root_path, notice: "You are already in the queue or your request is pending"
+		end
 	end
 
 	def myBorrowRequests
@@ -22,6 +43,8 @@ class BorrowController < ApplicationController
 		@user = current_user
 		@book = Book.find(params[:id])
 		@book.borrow_status = 0 #accepted by lender
+		@book.bookSharedOn = Time.now
+		@book.bookSharedTill = Time.now + (7*@book.borrowed_for_week).days
 		if @book.save
       		redirect_to pending_path, notice: "Accepted borrow Request"
     	end	
@@ -42,7 +65,7 @@ class BorrowController < ApplicationController
 		@book.borrowed_by_id = @book.borrow_request_by
 		@book.borrow_request_by=nil
 		if @book.save
-      		redirect_to confirm_book_recieved_path, notice: "Confirm That book has been recieved"
+      		redirect_to pending_recievals_path, notice: "Confirm That book has been recieved"
     	end	
 	end
 
@@ -57,9 +80,13 @@ class BorrowController < ApplicationController
 		@book.borrowed_by_id = nil
 		@book.borrow_status = nil
 		@book.borrow_request_by= @book.WL1_id
+		@book.borrowed_for_week = @book.WL1RequestWeeks
 		@book.WL1_id= @book.WL2_id
+		@book.WL1RequestWeeks = @book.WL2RequestWeeks
 		@book.WL2_id= @book.WL3_id
+		@book.WL2RequestWeeks = @book.WL3RequestWeeks
 		@book.WL3_id=nil
+		@book.WL3RequestWeeks = nil
 		if @book.save
       		redirect_to shared_path, notice: "Book Recieved"
     	end	
