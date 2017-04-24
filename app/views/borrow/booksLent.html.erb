@@ -40,7 +40,7 @@
   <!-- End Slider -->
   <!-- Main -->
   <div id="main" class="shell" style="min-height: 200px">
-  <!--Sidebar -->
+    <!--Sidebar -->
   <div id="sidebar">
       <ul class="categories">
         <li>
@@ -57,15 +57,27 @@
     <!-- Sidebar -->
     
    <div style="text-align: center;">
-   <h3 style="color: black"> User Profile: </h2><br>
-    <div class="products">  
-        <label><b>Name: </b></label>
-        <label><%= @user.name%><br></label>
-        <label><b>Email: </b></label>
-        <label><%= @user.email%><br></label>
-        <label><b>Address: </b></label>
-        <label><%= @user.address%><br></label>
-        <%= button_to 'Change Password', edit_user_registration_path, :method=>"get", class:'form-buttons submit-btn' %>
+   <h3 style="color: black"> Books Lent By you: </h2><br>
+    <div class="products"> 
+      <% if @books.blank? %>
+        <label> Oops Nothing to Show :P</label>
+        <%end%> 
+        <% @books.each do |book| %>
+        <li>
+                <span class="holder">
+                  <%= book.title %> by
+                  <%= book.author %>;
+                  Genre: <%if book.genre == 1 %>
+                                    Fiction</br>
+                                    <%elsif book.genre == 2 %>
+                                    Non Fiction </br>
+                                    <%elsif book.genre == 3 %>
+                                    Reference Book</br>
+                                  <%end%>
+                </span>
+          </li>
+        <% end %>
+
 </div>
   </div>
 </div>
@@ -76,7 +88,7 @@
       <div class="cnt">
           <div class="about" style="margin:auto">
           <h4>About Isabelo</h4>
-          <p>Isabelo is a platform that was born out of a need for sharing books and a problem that we, the creators of the platform and also being students, faced. This was the problem of buying books to satiate our hunger for knowledge. We find that sharing books is a much better alternative than buying books when it comes to the average student. So get ready to collaborate and share to your hearts content! </p>
+          <p>Isabelo is a platform that was born out of a need for sharing books and a problem that we, the creators of the platform and also being students, faced. This was the problem of buying books to satiate our hunger for knowledge. We find that sharing books is a much better alternative than buying books when it comes to the average student. So get ready to collaborate and share to your hearts content. </p>
           <p>Team Isabelo</p>
         </div>
         <div class="cl">&nbsp;</div>

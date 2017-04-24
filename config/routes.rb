@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'pending/recievals' => 'borrow#myConfirmedRequests'
   put 'pending/recievals/:id' => 'borrow#confirmRecieval', :as => :confirm_book_recieved
   get 'shared' => 'borrow#booksShared'
+  get 'lent' => 'borrow#booksLent'
   put 'shared/returned/:id' => 'borrow#confirmReturn', :as => :confirm_book_returned
   get 'notifications' => 'notifications#index'
   put 'notifications/clearAll' => 'notifications#clearNotifications', :as => :clear_notifications

@@ -42,6 +42,10 @@ class BorrowController < ApplicationController
 		@books = Book.where(:uploaded_by_id => @user.id, :borrow_status=>1)
 	end
 
+	def booksLent
+		@user = current_user
+		@books = Book.where(:uploaded_by_id => @user.id, :borrow_status=>0, :borrow_request_by=>nil)
+	end
 	
 
 	def acceptBorrowRequest #generate notification for the same
