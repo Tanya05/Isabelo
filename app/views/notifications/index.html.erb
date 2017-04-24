@@ -46,10 +46,10 @@
    <h3 style="color: black"> Notifications: <%= link_to "Clear Notifications ", clear_notifications_path(), method: :put, data: { confirm: "You sure?" }%></h2><br>
     <div class="products">  
         <% if @notificationsBorrowed.blank? and @notificationsLent.blank?%>
-        <label> Oops No Notification</label>
+        <label> Oops No Notifications</label>
         <%end%>
         <% if !@notificationsBorrowed.blank?%>  
-          <label>Notifications of Borrowed books </label></br><br>
+          <label><b>Notifications of Borrowed books </b></label></br><br>
           <% @notificationsBorrowed.each do |notif| %>
             <% if notif.notifType == 1%>
             Deadline for <%= Book.find(notif.book_id).title%> is approaching. Please return the book on or before: <%=notif.deadline%> to <%= User.find(notif.user_id_about).name%> (<%= User.find(notif.user_id_about).email%>)
@@ -59,7 +59,7 @@
           <%end%>
           <% end %><br><br>
         <% if !@notificationsLent.blank?%>  
-          <label>Notifications of Lent books </label></br>
+          <label><b>Notifications of Lent books</b></label></br>
           <% @notificationsLent.each do |notif| %>
              <% if notif.notifType == 1%>
             Deadline for <%= Book.find(notif.book_id).title%> is approaching.
@@ -68,7 +68,7 @@
             <%end%></br>
           <% end %>
         <%end%>  
-        <br><label>Misc. Notifications </label></br>
+        <br><label><b>Misc. Notifications </b></label></br>
         <% if @flag == 1 %>
             <p> You have some borrow requests please click <a href="/pending">here</a> to resolve them.
           <%end%>

@@ -2,28 +2,33 @@ class BorrowController < ApplicationController
 	def borrowRequest 
 		@user = current_user
 		@book = Book.find(params[:id])
-		if 	@user.id != @book.borrow_request_by and @user.id != @book.WL1_id and @user.id != @book.WL2_id and @user.id != @book.WL3_id
-			if 	@book.borrow_request_by == nil and @book.WL1_id == nil
-				@book.borrow_request_by = @user.id
-				@book.borrow_status = 1 #Means that borrower has sent in the request but not accepted
-				p params[:borrowed_for_week]
-				@book.borrowed_for_week = params[:borrowed_for_week]		    
-		    elsif @book.borrow_request_by != nil and @book.WL1_id == nil 
-		    	@book.WL1_id = @user.id
-		    	@book.WL1RequestWeeks = params[:borrowed_for_week]
-		    elsif @book.borrow_request_by != nil and @book.WL1_id != nil and @book.WL2_id==nil
-		    	@book.WL2_id = @user.id
-		    	@book.WL2RequestWeeks = params[:borrowed_for_week]
-		    elsif @book.borrow_request_by != nil and @book.WL1_id != nil and @book.WL2_id!=nil and @book.WL2_id==nil
-		    	@book.WL3_id = @user.id
-		    	@book.WL3RequestWeeks = params[:borrowed_for_week]
-		    end	
-		    if @book.save
-		    	redirect_to root_path, notice: "Added book"
-		    end
+		if @user.id != @book.uploaded_by_id	
+			if 	@user.id != @book.borrow_request_by and @user.id != @book.WL1_id and @user.id != @book.WL2_id and @user.id != @book.WL3_id
+				if 	@book.borrow_request_by == nil and @book.WL1_id == nil
+					@book.borrow_request_by = @user.id
+					@book.borrow_status = 1 #Means that borrower has sent in the request but not accepted
+					p params[:borrowed_for_week]
+					@book.borrowed_for_week = params[:borrowed_for_week]		    
+			    elsif @book.borrow_request_by != nil and @book.WL1_id == nil 
+			    	@book.WL1_id = @user.id
+			    	@book.WL1RequestWeeks = params[:borrowed_for_week]
+			    elsif @book.borrow_request_by != nil and @book.WL1_id != nil and @book.WL2_id==nil
+			    	@book.WL2_id = @user.id
+			    	@book.WL2RequestWeeks = params[:borrowed_for_week]
+			    elsif @book.borrow_request_by != nil and @book.WL1_id != nil and @book.WL2_id!=nil and @book.WL2_id==nil
+			    	@book.WL3_id = @user.id
+			    	@book.WL3RequestWeeks = params[:borrowed_for_week]
+			    end	
+			    if @book.save
+			    	redirect_to root_path, notice: "Added book"
+			    end
+			else
+				redirect_to root_path, notice: "You are already in the queue or your request is pending"
+			end
 		else
-			redirect_to root_path, notice: "You are already in the queue or your request is pending"
+			redirect_to root_path, notice: "Your book :P"
 		end
+
 	end
 
 	
