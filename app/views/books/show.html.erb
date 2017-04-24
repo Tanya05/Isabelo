@@ -51,6 +51,15 @@
         <label><%= @book.author %></label></br>
         <label><b> ISBN: </b></label>
         <label><%= @book.isbn %></label></br>
+        <label><b> Genre: </b></label>
+        <%if @book.genre == 1 %>
+          <label>Fiction</label></br>
+          <%elsif @book.genre == 2 %>
+          <label> Non Fiction </label></br>
+          <%elsif @book.genre == 3 %>
+          <label> Study Material </label></br>
+        <%end%>
+        <label><%= @book.isbn %></label></br>
         <label><b> Availability: </b></label>
         <% if @book.borrowed_by_id == nil%>
           <label>Book Available</label></p>
