@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'shared' => 'borrow#booksShared'
   put 'shared/returned/:id' => 'borrow#confirmReturn', :as => :confirm_book_returned
   get 'notifications' => 'notifications#index'
+  put 'notifications/clearAll' => 'notifications#clearNotifications', :as => :clear_notifications
+  get 'account' => 'profile#viewAccount'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

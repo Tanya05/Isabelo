@@ -2,9 +2,39 @@ class NotificationsController < ApplicationController
 	def index
 		@user = current_user
 		generateNotifications()
+		@flag = 0
 		@notificationsBorrowed = Notification.where(:user_id_for => @user.id, :seen=>nil)	
 		@notificationsLent = Notification.where(:user_id_about => @user.id, :seen=>nil)	
+		for @notif in @notificationsBorrowed
+			if @notif.notifType==3
+				@flag=1
+			end
+		end	
 	end
+
+	def clearNotifications
+		@user = current_user
+		@borrowAccepted = Notification.where(:user_id_for => @user.id, :seen=>nil, :notifType=>4)
+		@borrowRejected = Notification.where(:user_id_for => @user.id, :seen=>nil, :notifType=>5)
+		@BorrowNotifs = Notification.where(:user_id_for => @user.id, :seen=>nil, :notifType=>3)
+		for @notif in @borrowAccepted
+			@notif.seen = true
+			@notif.save
+		end
+		for @notif in @borrowRejected
+			@notif.seen = true
+			@notif.save
+		end
+		for @notif in @BorrowNotifs
+			@notif.seen = true
+			@notif.save
+		end
+
+		redirect_to notifications_path
+	end
+
+
+
 
 	def generateNotifications
 		@user = current_user
