@@ -1,25 +1,92 @@
-<h2>Change your password</h2>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+  <title>Book Sharing For All</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+  <!--<link rel="stylesheet" href="//assets/stylesheets/style.css" type="text/css" media="all" />
+  <script type="text/javascript" src="//assets/javascripts/jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" src="//assets/javascripts/jquery.jcarousel.min.js"></script>
+  <!--[if IE 6]>
+    <script type="text/javascript" src="/assets/javascripts/png-fix.js"></script>
+  <![endif]-->
+  <!--<script type="text/javascript" src="//assets/javascripts/functions.js"></script>-->
+</head>
+<body>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+    <div id="header" class="shell">
+      <div id="logo"><h1><a href="/">Isabelo</a></h1><span><a href="/">Book Sharing For All</a></span></div>
+      <!-- Navigation -->
+      <div id="navigation">
+       <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/book/search">Search Book</a></li>
+          <li><a href="/books/new">Share Book</a></li>
+          <li><a href="/account">My Account</a></li>
+          <li><a href="/shared">Shared Books</a></li>
+          <li><a href="/notifications">Notifications</a></li>
+        </ul>
+    </div>
+      <!-- End Navigation -->
+      <div class="cl">&nbsp;</div>
+      <!-- Login-details -->
+      <div id="login-details">
+      <p>Welcome, <a href="#" id="user"><%= @user.name %></a></p><p><%= link_to(' - Log Out', destroy_user_session_path, :method => :delete) %></p>
+    </div>
+      <!-- End Login-details -->
+    </div>
+    <!-- End Header -->
+  <!-- Slider -->
+  <!-- End Slider -->
+  <!-- Main -->
+  <div id="main" class="shell" style="min-height: 200px">
+    <!-- Sidebar -->
+    
+   <div style="text-align: center;">
+   <h3 style="color: black"> User Profile: </h2><br>
+    <div class="products">  
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+ 
+      <%= f.label :password, "New password" %><br />
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+      <% end %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'field' %>
+    
+
+   
+      <%= f.label :password_confirmation, "Confirm new password" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'field' %>
+
+      <%= f.submit "Change my password" , class: 'form-buttons submit-btn'%>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
 
 <%= render "devise/shared/links" %>
+
+
+</div>
+  </div>
+</div>
+  <!-- End Main -->
+  <!-- Footer -->
+  <div id="footer" class="shell">
+    <div class="top">
+      <div class="cnt">
+          <div class="about" style="margin:auto">
+          <h4>About Isabelo</h4>
+          <p>Isabelo is a platform that was born out of a need for sharing books and a problem that we, the creators of the platform and also being students, faced. This was the problem of buying books to satiate our hunger for knowledge. We find that sharing books is a much better alternative than buying books when it comes to the average student. So get ready to collaborate and share to your hearts content! </p>
+          <p>Team Isabelo</p>
+        </div>
+        <div class="cl">&nbsp;</div>
+        <div class="copy">
+          <p>&copy; <a href="#">Isabelo.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Footer -->
+</body>
+</html>

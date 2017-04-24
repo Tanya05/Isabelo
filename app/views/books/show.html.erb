@@ -22,7 +22,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/book/search">Search Book</a></li>
           <li><a href="/books/new">Share Book</a></li>
-          <li><a href="#">My Account</a></li>
+          <li><a href="/account">My Account</a></li>
           <li><a href="/shared">Shared Books</a></li>
           <li><a href="/notifications">Notifications</a></li>
         </ul>
@@ -39,21 +39,21 @@
   <!-- Slider -->
   <!-- End Slider -->
   <!-- Main -->
-  <div id="main" class="shell">
+  <div id="main" class="shell" style="min-height: 200px">
     <!-- Sidebar -->
     
    <div style="text-align: center;">
    <h3 style="color: black"> Book Details: </h2><br>
     <div class="products">  
-        <label> Title: </label>
-        <%= @book.title %></br>
-        <label> Author: </label>
-        <%= @book.author %></br>
-        <label> ISBN: </label>
-        <%= @book.isbn %></br>
-        <label> Availability: </label>
+        <label><b> Title: </b></label>
+        <label><%= @book.title %></label></br>
+        <label><b> Author: </b></label>
+        <label><%= @book.author %></label></br>
+        <label><b> ISBN: </b></label>
+        <label><%= @book.isbn %></label></br>
+        <label><b> Availability: </b></label>
         <% if @book.borrowed_by_id == nil%>
-          Book Available</p>
+          <label>Book Available</label></p>
           <%= form_tag(controller: "borrow", action: "borrowRequest", method: "post") do %>
             <label for="BorrowFor"> Borrow For how many weeks</label><br/>
             <%= label_tag(:borrowed_for_week, "1") %>
@@ -70,7 +70,7 @@
           <% end %>
 
         <% elsif @book.WL1_id == nil%>
-          Book Not Available. Waiting list is empty so you will be next on the list.</p>
+          <label>Book Not Available. Waiting list is empty so you will be next on the list.</label></p>
           <%= form_tag(controller: "borrow", action: "borrowRequest", method: "post") do %>
             <label for="BorrowFor"> Borrow For how many weeks</label><br/>
             <%= label_tag(:borrowed_for_week, "1") %>
@@ -87,7 +87,7 @@
           <% end %>
         <% elsif @book.WL1_id != nil%>
           <% if @book.WL2_id == nil %>
-            Book Not Available. You will be second in the list.</p>
+            <label>Book Not Available. You will be second in the list.</label></p>
             <%= form_tag(controller: "borrow", action: "borrowRequest", method: "post") do %>
             <label for="BorrowFor"> Borrow For how many weeks</label><br/>
             <%= label_tag(:borrowed_for_week, "1") %>
@@ -120,7 +120,7 @@
               <br><%= submit_tag "Send Borrow Request" ,:class => ' form-buttons submit-btn'%>
           <% end %>
             <%else%>
-              Waiting list full. Book Not availiable. Please try again in a few days.</p>
+              <label>Waiting list full. Book Not availiable. Please try again in a few days.</label></p>
             <%end%>
           <%end %>
         <% end %>
