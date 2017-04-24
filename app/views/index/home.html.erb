@@ -80,7 +80,7 @@
 						<div class="product">
 							<a href="#" class="info">
 								<span class="holder">
-									<img src = "<%= GoogleBooks.search("isbn: #{book.isbn}").first.image_link %>" > 
+								<img src="http://covers.openlibrary.org/b/isbn/<%=book.isbn%>-M.jpg" />
 									<span class="book-name"><%= book.title %></span>
 									<span class="author"><%= book.author %></span>
 									<span class="description">Genre: <%if book.genre == 1 %>

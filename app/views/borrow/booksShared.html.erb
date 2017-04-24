@@ -57,14 +57,25 @@
     <!-- Sidebar -->
     
    <div style="text-align: center;">
-   <h3 style="color: black"> Books Lent By you: </h2><br>
+   <h3 style="color: black"> Books Shared By you: </h2><br>
     <div class="products"> 
       <% if @books.blank? %>
         <label> Oops Nothing to Show :P</label>
         <%end%> 
         <% @books.each do |book| %>
-        <%= book.title %>
-        <%= link_to "Book Safely Returned", confirm_book_returned_path(book), method: :put, data: { confirm: "You sure?" }%><br>
+        <li>
+                <span class="holder">
+                  <%= book.title %> by
+                  <%= book.author %>;
+                  Genre: <%if book.genre == 1 %>
+                                    Fiction</br>
+                                    <%elsif book.genre == 2 %>
+                                    Non Fiction </br>
+                                    <%elsif book.genre == 3 %>
+                                    Reference Book</br>
+                                  <%end%>
+                </span>
+          </li>
         <% end %>
 
 </div>

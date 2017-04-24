@@ -112,7 +112,7 @@ class BorrowController < ApplicationController
 
 	def booksShared
 		@user = current_user
-		@books = Book.where(:borrow_request_by => nil, :borrow_status=>0)
+		@books = Book.where(:uploaded_by_id => @user.id)
 	end
 
 	
